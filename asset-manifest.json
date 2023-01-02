@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/movie-app-ts/static/css/main.acaac1de.css",
-    "main.js": "/movie-app-ts/static/js/main.ff8626f9.js",
+    "main.css": "/movie-app-ts/static/css/main.68ff4821.css",
+    "main.js": "/movie-app-ts/static/js/main.d0fbbe90.js",
     "static/media/slick.svg": "/movie-app-ts/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/movie-app-ts/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/movie-app-ts/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/movie-app-ts/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/movie-app-ts/index.html",
-    "main.acaac1de.css.map": "/movie-app-ts/static/css/main.acaac1de.css.map",
-    "main.ff8626f9.js.map": "/movie-app-ts/static/js/main.ff8626f9.js.map"
+    "main.68ff4821.css.map": "/movie-app-ts/static/css/main.68ff4821.css.map",
+    "main.d0fbbe90.js.map": "/movie-app-ts/static/js/main.d0fbbe90.js.map"
   },
   "entrypoints": [
-    "static/css/main.acaac1de.css",
-    "static/js/main.ff8626f9.js"
+    "static/css/main.68ff4821.css",
+    "static/js/main.d0fbbe90.js"
   ]
 }
