@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/movie-app-ts/static/css/main.91bb9479.css",
-    "main.js": "/movie-app-ts/static/js/main.dca3c6a3.js",
+    "main.js": "/movie-app-ts/static/js/main.17c869a7.js",
     "static/media/220-2205714_get-the-latest-movies-data-src-kodi-tv.jpg": "/movie-app-ts/static/media/220-2205714_get-the-latest-movies-data-src-kodi-tv.c07b4e31f755a64e1b6f.jpg",
     "static/media/favpng_symbol-download.png": "/movie-app-ts/static/media/favpng_symbol-download.2a105402963485ce14b3.png",
     "static/media/slick.svg": "/movie-app-ts/static/media/slick.2630a3e3eab21c607e21.svg",
@@ -10,10 +10,10 @@
     "static/media/slick.woff": "/movie-app-ts/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/movie-app-ts/index.html",
     "main.91bb9479.css.map": "/movie-app-ts/static/css/main.91bb9479.css.map",
-    "main.dca3c6a3.js.map": "/movie-app-ts/static/js/main.dca3c6a3.js.map"
+    "main.17c869a7.js.map": "/movie-app-ts/static/js/main.17c869a7.js.map"
   },
   "entrypoints": [
     "static/css/main.91bb9479.css",
-    "static/js/main.dca3c6a3.js"
+    "static/js/main.17c869a7.js"
   ]
 }
