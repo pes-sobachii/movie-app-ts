@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmovie_app_ts=self.webpackChunkmovie_app_ts||[]).push([[175],{9158:function(n,e,a){a.r(e),a.d(e,{default:function(){return c}});a(2791);var s=a.p+"static/media/favpng_symbol-download.2a105402963485ce14b3.png",t=a(184),c=function(){return(0,t.jsx)("div",{className:"page-not-found",children:(0,t.jsxs)("div",{className:"container",children:[(0,t.jsx)("h2",{children:"Page Not Found :("}),(0,t.jsx)("img",{src:s,alt:""})]})})}}}]);
+//# sourceMappingURL=175.640d9e3d.chunk.js.map

@@ -1,7 +1,14 @@
 {
   "files": {
-    "main.css": "/movie-app-ts/static/css/main.91bb9479.css",
-    "main.js": "/movie-app-ts/static/js/main.50428163.js",
+    "main.css": "/movie-app-ts/static/css/main.92e1d55c.css",
+    "main.js": "/movie-app-ts/static/js/main.e252c771.js",
+    "static/css/963.a217a427.chunk.css": "/movie-app-ts/static/css/963.a217a427.chunk.css",
+    "static/js/963.c5e378d8.chunk.js": "/movie-app-ts/static/js/963.c5e378d8.chunk.js",
+    "static/js/969.eb4f16d9.chunk.js": "/movie-app-ts/static/js/969.eb4f16d9.chunk.js",
+    "static/js/954.14465edd.chunk.js": "/movie-app-ts/static/js/954.14465edd.chunk.js",
+    "static/js/514.efc78b03.chunk.js": "/movie-app-ts/static/js/514.efc78b03.chunk.js",
+    "static/js/175.640d9e3d.chunk.js": "/movie-app-ts/static/js/175.640d9e3d.chunk.js",
+    "static/js/808.7d4f5ad8.chunk.js": "/movie-app-ts/static/js/808.7d4f5ad8.chunk.js",
     "static/media/220-2205714_get-the-latest-movies-data-src-kodi-tv.jpg": "/movie-app-ts/static/media/220-2205714_get-the-latest-movies-data-src-kodi-tv.c07b4e31f755a64e1b6f.jpg",
     "static/media/favpng_symbol-download.png": "/movie-app-ts/static/media/favpng_symbol-download.2a105402963485ce14b3.png",
     "static/media/slick.svg": "/movie-app-ts/static/media/slick.2630a3e3eab21c607e21.svg",
@@ -9,11 +16,18 @@
     "static/media/slick.ttf": "/movie-app-ts/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/movie-app-ts/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/movie-app-ts/index.html",
-    "main.91bb9479.css.map": "/movie-app-ts/static/css/main.91bb9479.css.map",
-    "main.50428163.js.map": "/movie-app-ts/static/js/main.50428163.js.map"
+    "main.92e1d55c.css.map": "/movie-app-ts/static/css/main.92e1d55c.css.map",
+    "main.e252c771.js.map": "/movie-app-ts/static/js/main.e252c771.js.map",
+    "963.a217a427.chunk.css.map": "/movie-app-ts/static/css/963.a217a427.chunk.css.map",
+    "963.c5e378d8.chunk.js.map": "/movie-app-ts/static/js/963.c5e378d8.chunk.js.map",
+    "969.eb4f16d9.chunk.js.map": "/movie-app-ts/static/js/969.eb4f16d9.chunk.js.map",
+    "954.14465edd.chunk.js.map": "/movie-app-ts/static/js/954.14465edd.chunk.js.map",
+    "514.efc78b03.chunk.js.map": "/movie-app-ts/static/js/514.efc78b03.chunk.js.map",
+    "175.640d9e3d.chunk.js.map": "/movie-app-ts/static/js/175.640d9e3d.chunk.js.map",
+    "808.7d4f5ad8.chunk.js.map": "/movie-app-ts/static/js/808.7d4f5ad8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.91bb9479.css",
-    "static/js/main.50428163.js"
+    "static/css/main.92e1d55c.css",
+    "static/js/main.e252c771.js"
   ]
 }
