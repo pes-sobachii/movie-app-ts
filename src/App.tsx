@@ -1,64 +1,77 @@
-import React, { Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, {Suspense, useRef, useState} from 'react';
+import {Route, Routes} from 'react-router-dom';
 import './App.css';
-import './style.scss';
+import './styles/style.scss';
 import Header from "./Components/Header/Header";
-import PopularPage from "./Components/Popular/PopularPage";
-import Search from "./Components/Search/Search";
-import Preloader from "./Components/Preloader/Preloader";
-import UpcomingPage from "./Components/Upcoming/UpcomingPage";
-import DetailsPage from "./Components/Details/DetailsPage";
 import MainPage from "./Components/Main/MainPage";
+import BurgerMenu from "./Components/Header/BurgerMenu";
+
+const PopularPage = React.lazy(() => import('./Components/Popular/PopularPage'));
+const Search = React.lazy(() => import('./Components/Search/Search'));
+const UpcomingPage = React.lazy(() => import('./Components/Upcoming/UpcomingPage'));
+const DetailsPage = React.lazy(() => import('./Components/Details/DetailsPage'));
+const PageNotFound = React.lazy(() => import('./Components/404Page/PageNotFound'));
 
 const App: React.FC = () => {
 
+    const toHeader = useRef<HTMLHeadElement | null>(null)
+    const [isBurgerActive, setBurgerActive] = useState(false)
+
   return (
     <div className="wrapper">
-        <Header />
+
+        <Header active={isBurgerActive} setActive={setBurgerActive}/>
         <Routes>
-            <Route path="/">
                 <Route
-                    path=""
+                    path="/movie-app-ts/"
                     element={
-                        <Suspense fallback={<Preloader />}>
+                        <Suspense fallback={<></>}>
                             <MainPage />
                         </Suspense>
                     }
                 />
                 <Route
-                    path="popular"
+                    path="/movie-app-ts/popular"
                     element={
-                        <Suspense fallback={<Preloader />}>
+                        <Suspense fallback={<></>}>
                             <PopularPage />
                         </Suspense>
                     }
                 />
                 <Route
-                    path="search"
+                    path="/movie-app-ts/search"
                     element={
-                        <Suspense fallback={<Preloader />}>
+                        <Suspense fallback={<></>}>
                             <Search />
                         </Suspense>
                     }
                 />
                 <Route
-                    path="upcoming"
+                    path="/movie-app-ts/upcoming"
                     element={
-                        <Suspense fallback={<Preloader />}>
+                        <Suspense fallback={<></>}>
                             <UpcomingPage />
                         </Suspense>
                     }
                 />
                 <Route
-                    path=":id"
+                    path="/movie-app-ts/search/:id"
                     element={
-                        <Suspense fallback={<Preloader />}>
+                        <Suspense fallback={<></>}>
                             <DetailsPage />
                         </Suspense>
                     }
                 />
-            </Route>
+            <Route
+                path="*"
+                element={
+                    <Suspense fallback={<></>}>
+                        <PageNotFound />
+                    </Suspense>
+                }
+            />
         </Routes>
+        <BurgerMenu active={isBurgerActive} setActive={setBurgerActive}/>
     </div>
   );
 }

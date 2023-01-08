@@ -4,9 +4,10 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import {FetchedItemType} from "../Types/Types";
 import {MdOutlineNavigateBefore, MdOutlineNavigateNext} from "react-icons/md";
-import {IconContext} from "react-icons";
+import {Link} from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
 
-const WideSlider:React.FC<{ movies: FetchedItemType[] }> = ({movies}) => {
+const WideSlider:React.FC<{ movies: FetchedItemType[], isLoading: boolean }> = ({movies, isLoading}) => {
 
     const sliderRef = useRef<Slider | null>(null)
 
@@ -18,31 +19,21 @@ const WideSlider:React.FC<{ movies: FetchedItemType[] }> = ({movies}) => {
         slidesToScroll: 1,
         variableWidth: false,
         arrows: false,
-        responsive: [
-            {
-                breakpoint: 1000,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    infinite: true,
-                    dots: true
-                }
-            }
-        ]
+        adaptiveHeight: true,
     };
 
     return (
         <div className='slider__wrapper'>
             <MdOutlineNavigateBefore onClick={() => sliderRef.current?.slickPrev()} />
             <Slider ref={sliderRef} className='wide-slider' {...settings}>
-                {movies.slice(0, 10).map((movie) => {
+                {isLoading ? [...new Array(20)].map((v, i) => <div key={i}  className='wide-slider-card'><Skeleton baseColor={"#5d5c5c"} highlightColor={"#858585"} className="wide-skeleton"/></div> ) : movies.slice(0, 10).map((movie) => {
                     return(
-                        <div className='wide-slider-card'>
+                        <Link key={movie.id} to={`/movie-app-ts/search/${movie.id}`} className='wide-slider-card'>
                             <div className="wide-slider-card__overflow">
                                 <h3 className="wide-slider-card__title">{movie.title}</h3>
                             </div>
                             <img src={movie.backdrop_path ? `https://image.tmdb.org/t/p/w780${movie.backdrop_path}`:`https://ih1.redbubble.net/image.370389900.3139/flat,750x,075,f-pad,750x1000,f8f8f8.u4.jpg`} alt=""/>
-                        </div>
+                        </Link>
                     )
                 })}
             </Slider>

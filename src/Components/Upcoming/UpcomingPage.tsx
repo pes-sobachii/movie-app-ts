@@ -1,25 +1,49 @@
 import React, {useEffect} from 'react';
-import {currentPageSelector, fetchPopular, popularSelector, totalPagesSelector} from "../../redux/Slices/popularSlice";
 import {useAppDispatch} from "../../redux/store";
 import {useSelector} from "react-redux";
-import MovieCard from "../MovieCard/MovieCard";
 import Pagination from "../Pagination/Pagination";
 import {
     currentUpcomingPageSelector,
     fetchUpcoming,
-    totalUpcomingSlicePagesSelector, upcomingSelector
+    isLoadingUpcomingPageSelector, setCurrentPage,
+    totalUpcomingSlicePagesSelector,
+    upcomingSelector
 } from "../../redux/Slices/upcomingSlice";
+import MoviesTable from "../MoviesTable/MoviesTable";
+import qs from 'qs';
+import {useNavigate} from "react-router-dom";
 
-const UpcomingPage = () => {
+const UpcomingPage:React.FC = () => {
 
+    const navigate = useNavigate();
     const dispatch = useAppDispatch()
     const movies = useSelector(upcomingSelector)
     const totalPages = useSelector(totalUpcomingSlicePagesSelector)
     const currentPage = useSelector(currentUpcomingPageSelector)
+    const isLoading = useSelector(isLoadingUpcomingPageSelector)
+    const isMounted = React.useRef(false);
 
     useEffect(() => {
-        dispatch(fetchUpcoming(1))
-    }, [])
+        if (isMounted.current) {
+          const params = {
+            currentPage,
+          };
+          const queryString = qs.stringify(params, { skipNulls: true });
+          navigate(`?${queryString}`);
+        }
+        dispatch(fetchUpcoming(currentPage))
+        isMounted.current = true;
+    }, [currentPage])
+
+    React.useEffect(() => {
+      if (window.location.search) {
+        const params = qs.parse(window.location.search.substring(1));
+        dispatch(
+          setCurrentPage(Number(params.currentPage)),
+        );
+      }
+      isMounted.current = true;
+    }, []);
 
     return (
         <div className="movie-page popular-page">
@@ -27,12 +51,8 @@ const UpcomingPage = () => {
                 <div className="subheader">
                     <h1 className="heading">Upcoming movies</h1>
                 </div>
-                    <div className="movie-grid">
-                        {movies.map((movie) => (
-                            <MovieCard {...movie} key={movie.id} />
-                        ))}
-                    </div>
-                <Pagination page={currentPage} total_pages={totalPages} onClickHandler={(num:number) => dispatch(fetchUpcoming(num))}/>
+                <MoviesTable isLoading={isLoading} movies={movies}/>
+                <Pagination page={currentPage} total_pages={totalPages} onClickHandler={(num:number) => dispatch(setCurrentPage(num))}/>
             </div>
         </div>
     );

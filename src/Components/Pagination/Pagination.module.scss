@@ -1,0 +1,23 @@
+@import "../../styles/variables";
+
+.pagination{
+  text-align: center;
+  padding-top: 20px;
+}
+
+.number{
+  margin: 0 10px;
+  opacity: 0.7;
+  font-size: 20px;
+  transition: all $transitionTime ease;
+  cursor: pointer;
+  &:hover{
+    opacity: 1;
+  }
+}
+
+.activePage{
+  color: $secondary;
+  opacity: 1;
+  font-size: 22px;
+}

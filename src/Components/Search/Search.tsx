@@ -1,45 +1,70 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useAppDispatch} from "../../redux/store";
 import {useSelector} from "react-redux";
-import MovieCard from "../MovieCard/MovieCard";
 import {
+    currentSearchPageSelector,
+    fetchNowAired,
     fetchSearched,
     isLoadingSelector,
-    searchedSelector,
+    querySelector,
     removeItems,
-    currentSearchPageSelector, totalSearchPagesSelector, fetchNowAired, totalSearchResultsSelector
+    searchedSelector,
+    setCurrentPage,
+    setStateQuery,
+    totalSearchPagesSelector,
+    totalSearchResultsSelector
 } from "../../redux/Slices/searchSlice";
 import debounce from 'lodash.debounce'
-import Preloader from "../Preloader/Preloader";
 import Pagination from "../Pagination/Pagination";
-import { Link as ScrollLink } from "react-scroll" ;
+import MoviesTable from "../MoviesTable/MoviesTable";
+import qs from "qs";
+import {useNavigate} from "react-router-dom";
 
-const Search = () => {
+const Search:React.FC = () => {
 
-    const [query, setQuery] = useState('')
-    const [wasSearched, setWasSearched] = useState(false)
+    const [inputQuery, setInputQuery] = useState('')
     const dispatch = useAppDispatch()
     const totalPages = useSelector(totalSearchPagesSelector)
     const currentPage = useSelector(currentSearchPageSelector)
     const isLoading = useSelector(isLoadingSelector)
     const movies = useSelector(searchedSelector)
     const totalResults = useSelector(totalSearchResultsSelector)
+    const stateQuery = useSelector(querySelector)
+    const navigate = useNavigate();
 
     const onInputChange = useCallback(debounce((str) => {
         if (str) {
-            setWasSearched(true)
-            dispatch(fetchSearched({query: str, page: 1}))
-        } else{
-            setWasSearched(false)
+            dispatch(setStateQuery(str))
+        } else {
             dispatch(removeItems())
         }
     }, 1150), [])
 
     useEffect(() => {
-        if(!wasSearched){
-            dispatch(fetchNowAired())
+            if(!stateQuery){
+                navigate('')
+                dispatch(fetchNowAired())
+            } else {
+                    const params = {
+                        currentPage,
+                        query: stateQuery
+                    };
+                    const queryString = qs.stringify(params, { skipNulls: true });
+                    navigate(`?${queryString}`);
+
+
+                dispatch(fetchSearched({query: stateQuery, page: currentPage}))
+            }
+    }, [currentPage, stateQuery])
+
+    useEffect(() => {
+        if (window.location.search) {
+            const params = qs.parse(window.location.search.substring(1)) as unknown as {currentPage: number, query: string};
+            setInputQuery(params.query)
+            dispatch(setStateQuery(params.query));
+            dispatch(setCurrentPage(Number(params.currentPage)),);
         }
-    }, [wasSearched])
+    }, []);
 
     return (
         <div className="movie-page">
@@ -47,35 +72,21 @@ const Search = () => {
                 <div className="subheader">
                     <h1 className="heading">Search</h1>
                     <div className="header-input">
-                        <input value={query} onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
-                            setQuery(e.target.value)
+                        <input value={inputQuery} onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
+                            setInputQuery(e.target.value)
                             onInputChange(e.target.value)
                         }} type="text"/>
                         <span className="count-pill">
-                            {wasSearched ? `${totalResults} ${totalResults === 1 ? "Movie" : "Movies"}` : "Search"}
+                            {stateQuery ? `${totalResults} ${totalResults === 1 ? "Movie" : "Movies"}` : "Search"}
                         </span>
                     </div>
                 </div>
                 <div className="movie-page__description">
-                    {!wasSearched ? "Now Watching In Cinemas" : `Results of searching`}
+                    {!stateQuery ? "Now Watching In Cinemas" : `Results of searching`}
                 </div>
-
-                {isLoading ? (
-                    <Preloader />
-                ) : movies.length === 0 ? <div className="error-plug plug">It seems you entered an invalid value!</div> : <div className="movie-grid">
-                    {movies.map((movie) => (
-                        <MovieCard {...movie} key={movie.id} />
-                    ))}
-                </div>}
-                {/*{!wasSearched ? <div className="search-plug plug">Enter a value!</div> : isLoading ? (*/}
-                {/*    <Preloader />*/}
-                {/*) : movies.length === 0 ? <div className="error-plug plug">It seems you entered an invalid value!</div> : <div className="movie-grid">*/}
-                {/*    {movies.map((movie) => (*/}
-                {/*        <SliderCard {...movie} key={movie.id} />*/}
-                {/*    ))}*/}
-                {/*</div>}*/}
-                {wasSearched && <Pagination page={currentPage} total_pages={totalPages}
-                             onClickHandler={(num: number) => dispatch(fetchSearched({query, page: num}))}/>}
+                {movies.length === 0 && !isLoading ? <div className="error-plug plug">It seems you entered an invalid value!</div> : <MoviesTable isLoading={isLoading} movies={movies}/>}
+                {stateQuery && <Pagination page={currentPage} total_pages={totalPages}
+                             onClickHandler={(num: number) => dispatch(setCurrentPage(num))}/>}
             </div>
         </div>
     );

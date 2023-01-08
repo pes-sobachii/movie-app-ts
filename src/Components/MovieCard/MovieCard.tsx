@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 const MovieCard:React.FC<FetchedItemType> = ({poster_path, title, overview, vote_average, id}) => {
     return (
-        <Link to={`/${id}`} className="movie-card">
+        <Link to={`/movie-app-ts/search/${id}`} className="movie-card">
             <div className="overlay">
                 <h3>{title}</h3>
                 <p>{overview}</p>

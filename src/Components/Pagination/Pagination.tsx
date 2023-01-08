@@ -1,5 +1,7 @@
 import React from 'react';
 
+import styles from './Pagination.module.scss'
+
 const Pagination:React.FC<{ total_pages: number, page: number, onClickHandler: any }> = ({total_pages, page, onClickHandler}) => {
     let totalPages = Math.min(total_pages, 500)
     let numbers = []
@@ -16,11 +18,15 @@ const Pagination:React.FC<{ total_pages: number, page: number, onClickHandler: a
         numbers = numbers.splice(490, 9)
     }
 
+    if (total_pages < 2){
+        return <></>
+    }
+
     return (
-        <div className='pagination'>
-            {page > 4 ? <><span onClick={() => onClickHandler(1)} className={'pagination-number' + (page === 1 ? ' active-page' : '')}>1</span><span className='pagination-number'> ... </span></> : ''}
-            {numbers.map(num => <span onClick={() => onClickHandler(num)} key={num} className={'pagination-number' + (page === num ? ' active-page' : '')}>{num}</span>)}
-            {page < totalPages - 4 ? <><span className='pagination-number'> ... </span><span onClick={() => onClickHandler(totalPages)} className={'pagination-number' + (page === totalPages ? ' active-page' : '')}>{totalPages}</span></> : ''}
+        <div className={styles.pagination}>
+            {page > 4 ? <><span onClick={() => onClickHandler(1)} className={styles.number + (page === 1 ? ' ' + styles.activePage : '')}>1</span><span className={styles.number}> ... </span></> : ''}
+            {numbers.map(num => <span onClick={() => onClickHandler(num)} key={num} className={styles.number + (page === num ? ' ' + styles.activePage : '')}>{num}</span>)}
+            {page < totalPages - 4 ? <><span className={styles.number}> ... </span><span onClick={() => onClickHandler(totalPages)} className={styles.number + (page === totalPages ? ' ' + styles.activePage : '')}>{totalPages}</span></> : ''}
         </div>
     );
 }
