@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from "axios";
 import {RootState} from "../store";
-import {FetchedItemType, WholeFetchedData} from "../../Components/Types/Types";
+import {FetchedItemType, WholeFetchedData} from "../../Types/Types";
 
 interface SearchSliceState {
     items: FetchedItemType[];

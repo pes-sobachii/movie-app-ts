@@ -1,0 +1,128 @@
+@import "../../styles/variables";
+
+.subheader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.heading {
+  padding: 20px 0;
+  text-align: left;
+  color: $white;
+  font-size: 40px;
+}
+
+.search {
+  padding: 20px 0;
+  font-size: 1.125rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  input {
+    color: $white;
+    padding: 10px 15px;
+    width: 450px;
+    background-color: transparent;
+    border: 1px solid $secondary;
+    border-radius: 999px;
+  }
+}
+
+.pill {
+  display: inline-block;
+  text-align: center;
+  background-color: $secondary;
+  padding: 5px 15px;
+  min-width: 170px;
+  font-size: 1.080rem;
+  font-weight: 600;
+  border-radius: 30px;
+  color: $primary;
+}
+
+.title{
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.plug {
+  opacity: .65;
+  text-align: center;
+  margin-top: 60px;
+}
+
+@media (max-width: 992px) {
+
+  .search {
+    font-size: 1.1rem;
+
+    input {
+      width: 300px;
+    }
+  }
+}
+
+@media (max-width: 760px) {
+
+  .subheader {
+    flex-direction: column;
+  }
+
+  .title{
+    font-size: 35px;
+  }
+
+}
+
+@media (max-width: 410px) {
+
+  .heading {
+    font-size: 1.4rem;
+  }
+
+}
+
+@media (max-width: 520px) {
+  .search {
+    font-size: 1rem;
+
+    input {
+      width: 220px;
+      padding: 8px 15px;
+    }
+  }
+
+  .pill {
+    padding: 3px 10px;
+    min-width: 130px;
+    font-size: 1rem;
+  }
+
+  .title{
+    font-size: 28px;
+  }
+
+}
+
+@media (max-width: 410px) {
+
+  .search {
+    font-size: 1rem;
+    flex-direction: column;
+
+    input {
+      width: 220px;
+      padding: 8px 15px;
+    }
+  }
+
+  .pill {
+    padding: 3px 10px;
+    min-width: 130px;
+    font-size: 1rem;
+  }
+}

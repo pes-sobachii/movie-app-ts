@@ -2,10 +2,11 @@ import React, {useRef} from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import {FetchedItemType} from "../Types/Types";
-import SliderCard from "../SliderCard/SliderCard";
+import {FetchedItemType} from "../../Types/Types";
+import SliderCard from "./SliderCard";
 import {MdOutlineNavigateBefore, MdOutlineNavigateNext} from "react-icons/md";
 import Skeleton from "react-loading-skeleton";
+import styles from './CustomSlider.module.scss'
 
 const CustomSlider:React.FC<{ movies: FetchedItemType[], isLoading: boolean }> = ({movies, isLoading}) => {
 
@@ -39,11 +40,11 @@ const CustomSlider:React.FC<{ movies: FetchedItemType[], isLoading: boolean }> =
 
     return (
         <>
-        <div className='slider__wrapper'>
+        <div className={styles.wrapper}>
             {!isLoading ?
                 <>
                     <MdOutlineNavigateBefore onClick={() => sliderRef.current?.slickPrev()}/>
-                        <Slider ref={sliderRef} className='slider' {...settings}>
+                        <Slider ref={sliderRef} className={styles.slider} {...settings}>
                             {movies.slice(0, 10).map((movie) => {
                                 return <SliderCard {...movie} key={movie.id}/>
                             })}
@@ -53,10 +54,10 @@ const CustomSlider:React.FC<{ movies: FetchedItemType[], isLoading: boolean }> =
                 :
                 <>
                     <MdOutlineNavigateBefore />
-                    <div className="slider__skeleton-slider">
-                        <div className="skeleton-slider__item"><Skeleton baseColor={"#5d5c5c"} highlightColor={"#858585"} width={'100%'} height={'100%'}/></div>
-                        <div className="skeleton-slider__item"><Skeleton baseColor={"#5d5c5c"} highlightColor={"#858585"} width={'100%'} height={'100%'}/></div>
-                        <div className="skeleton-slider__item"><Skeleton baseColor={"#5d5c5c"} highlightColor={"#858585"} width={'100%'} height={'100%'}/></div>
+                    <div className={styles.skeleton}>
+                        <div className={styles.item}><Skeleton baseColor={"#5d5c5c"} highlightColor={"#858585"} width={'100%'} height={'100%'}/></div>
+                        <div className={styles.item}><Skeleton baseColor={"#5d5c5c"} highlightColor={"#858585"} width={'100%'} height={'100%'}/></div>
+                        <div className={styles.item}><Skeleton baseColor={"#5d5c5c"} highlightColor={"#858585"} width={'100%'} height={'100%'}/></div>
                     </div>
                     <MdOutlineNavigateNext />
                 </>}

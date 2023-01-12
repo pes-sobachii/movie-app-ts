@@ -12,3 +12,19 @@
     max-height: 300px;
   }
 }
+
+@media (max-width: 760px) {
+  .wrapper {
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  .wrapper {
+    h2 {
+      font-size: 1.1rem;
+    }
+  }
+}

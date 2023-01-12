@@ -1,0 +1,135 @@
+@import "../../styles/variables";
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px
+}
+
+.slider {
+  max-height: 370px;
+  max-width: 780px;
+}
+
+.card, .skeleton-slider__item {
+  width: 220px;
+  margin: 0 18px;
+}
+
+.card {
+  font-size: 14px;
+  text-align: center;
+  display: block;
+  img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: $transitionTime;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.skeleton {
+  display: flex;
+}
+
+.item {
+  height: 325px;
+  border-radius: 20px;
+}
+
+@media (max-width: 1200px) {
+  .slider {
+    max-width: 550px;
+  }
+  .card, .item {
+    width: 225px;
+    margin: 0 20px;
+  }
+  .skeleton {
+    div:last-child {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 760px) {
+
+  .slider {
+    max-width: 480px;
+  }
+
+  .card, .item {
+    width: 200px;
+    margin: 0 16px;
+  }
+
+  .item {
+    height: 300px;
+  }
+}
+
+@media (max-width: 630px) {
+
+  .slider {
+    max-width: 418px;
+  }
+
+  .card, .item {
+    width: 180px;
+    margin: 0 12px;
+  }
+
+  .item {
+    height: 270px;
+  }
+
+}
+
+@media (max-width: 520px) {
+
+  .slider {
+    max-height: 300px;
+    max-width: none;
+    width: 250px;
+    overflow: hidden;
+  }
+
+  .card, .item {
+    width: 200px;
+    margin: 0 25px;
+  }
+
+  .item {
+    height: 300px;
+  }
+
+  .skeleton {
+    div:last-child {
+      display: none;
+    }
+
+    div:first-child {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 410px) {
+
+  .slider {
+    max-width: 180px;
+  }
+
+  .card, .item {
+    width: 170px;
+    margin: 0 5px;
+  }
+
+  .item {
+    height: 255px;
+  }
+}

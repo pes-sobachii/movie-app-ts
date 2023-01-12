@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from "axios";
 import {RootState} from "../store";
-import {detailsInitialStateType, FetchedItemDetailsType, WholeFetchedData} from "../../Components/Types/Types";
+import {detailsInitialStateType, FetchedItemDetailsType, WholeFetchedData} from "../../Types/Types";
 
 export const fetchDetails = createAsyncThunk<FetchedItemDetailsType, number>(
     'details/fetchDetails',

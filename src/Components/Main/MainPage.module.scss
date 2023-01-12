@@ -1,0 +1,82 @@
+@import "../../styles/variables";
+
+.wrapper {
+  padding-top: 80px;
+}
+
+.fullscreenPlaceholder {
+  height: calc(100vh - 110px);
+}
+
+.sliderBlock {
+  margin-bottom: 45px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.wideSlider {
+  flex-direction: column;
+  h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+
+.info {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex: 1 1 auto;
+  a {
+    color: $secondary;
+    transition: all $transitionTime ease;
+    &:hover {
+      color: red;
+    }
+  }
+}
+
+.infoTitle {
+  font-size: 32px;
+}
+
+.infoDescription {
+  max-width: 250px;
+  margin: 0 auto;
+  font-size: 25px;
+}
+
+
+@media (max-width: 992px) {
+  .firstSlick {
+    flex-direction: column-reverse;
+  }
+  .secondSlick {
+    flex-direction: column;
+  }
+  .info > * {
+    margin: 20px auto;
+  }
+  .wideSlider {
+    h2 {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+@media (max-width: 410px) {
+  .wideSlider {
+    h2 {
+      font-size: 1rem;
+    }
+  }
+  .wrapper {
+    padding-top: 65px;
+  }
+  .fullscreenPlaceholder {
+    height: calc(100vh - 95px);
+  }
+}

@@ -8,6 +8,8 @@ import {Link} from "react-router-dom";
 import {fetchNowAired, isLoadingSelector, searchedSelector} from "../../redux/Slices/searchSlice";
 import WideSlider from "../WideSlider/WideSlider";
 import {IconContext} from "react-icons";
+import Fullscreen from "./Fullscreen/Fullscreen";
+import styles from './MainPage.module.scss'
 
 const MainPage:React.FC = () => {
 
@@ -26,47 +28,36 @@ const MainPage:React.FC = () => {
     const upcomingIsLoading = useSelector(isLoadingUpcomingPageSelector)
     const elemToScrollTo = useRef<HTMLDivElement | null>(null)
 
-    const onClickHandler = () => {elemToScrollTo.current?.scrollIntoView({inline: "end", behavior: "smooth"})}
+    const onClickHandler = () => {elemToScrollTo.current?.scrollIntoView({behavior: "smooth" })}
 
     return (
         <IconContext.Provider value={{className: "wide-slider-button"}}>
-            <div className="movie-page main-page">
-                <div className="fullscreen">
-                    <div className="fullscreen__overflow">
-                        <div className="fullscreen__title">Search for thousands of movies</div>
-                        <div className="fullscreen__subtitle">Subscription costs only 196.85$ per month</div>
-                        <button className="fullscreen__button" onClick={onClickHandler}>Start exploring</button>
-                        <div className="fullscreen__arrow" >
-                            <div className="arrow arrow-first"></div>
-                            <div className="arrow arrow-second"></div>
-                        </div>
-                    </div>
-                </div>
-                <div ref={elemToScrollTo} className="container">
-                    <div className="main-page__slider main-page__wide-slider">
-                        <h2 className="wide-slider__title slider__title">The most watched titles right now</h2>
+                <Fullscreen onClickHandler={onClickHandler} />
+                <div className={styles.fullscreenPlaceholder}/>
+                <div ref={elemToScrollTo} className={styles.wrapper}>
+                    <div className={styles.sliderBlock + ' ' + styles.wideSlider}>
+                        <h2>The most watched titles right now</h2>
                         <WideSlider isLoading={nowAiredIsLoading} movies={nowAiredMovies}/>
                     </div>
                     <hr/>
-                    <div className="main-page__slider first-slick">
+                    <div className={styles.sliderBlock + ' ' + styles.firstSlick}>
                         {popularMovies ? <CustomSlider isLoading={popularIsLoading} movies={popularMovies}/> : <></>}
-                        <div className="info">
-                            <h2 className="info__title">Popular Movies</h2>
-                            <p className="info__description">Discover the most searched movies on TMDB site. Here you will definitely find an appropriate movie for you </p>
-                            <Link className='info__link' to={'/movie-app-ts/popular'}>More...</Link>
+                        <div className={styles.info}>
+                            <h2 className={styles.infoTitle}>Popular Movies</h2>
+                            <p className={styles.infoDescription}>Discover the most searched movies on TMDB site. Here you will definitely find an appropriate movie for you </p>
+                            <Link to={'/movie-app-ts/popular'}>More...</Link>
                         </div>
                     </div>
                     <hr/>
-                    <div className="main-page__slider second-slick">
-                        <div className="info">
-                            <h2 className="info__title">Upcoming Movies</h2>
-                            <p className="info__description">The list of upcoming titles is regularly updated and contains relevant information. Be always aware of the trends!</p>
-                            <Link className='info__link' to={"/movie-app-ts/upcoming"}>More...</Link>
+                    <div className={styles.sliderBlock + ' ' + styles.secondSlick}>
+                        <div className={styles.info}>
+                            <h2 className={styles.infoTitle}>Upcoming Movies</h2>
+                            <p className={styles.infoDescription}>The list of upcoming titles is regularly updated and contains relevant information. Be always aware of the trends!</p>
+                            <Link to={"/movie-app-ts/upcoming"}>More...</Link>
                         </div>
                         {upcomingMovies ? <CustomSlider isLoading={upcomingIsLoading} movies={upcomingMovies}/> : <></>}
                     </div>
                 </div>
-            </div>
         </IconContext.Provider>
     );
 };

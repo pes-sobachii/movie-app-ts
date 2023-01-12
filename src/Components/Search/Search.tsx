@@ -19,8 +19,9 @@ import Pagination from "../Pagination/Pagination";
 import MoviesTable from "../MoviesTable/MoviesTable";
 import qs from "qs";
 import {useNavigate} from "react-router-dom";
+import styles from './Search.module.scss'
 
-const Search:React.FC = () => {
+const Search: React.FC = () => {
 
     const [inputQuery, setInputQuery] = useState('')
     const dispatch = useAppDispatch()
@@ -41,25 +42,25 @@ const Search:React.FC = () => {
     }, 1150), [])
 
     useEffect(() => {
-            if(!stateQuery){
-                navigate('')
-                dispatch(fetchNowAired())
-            } else {
-                    const params = {
-                        currentPage,
-                        query: stateQuery
-                    };
-                    const queryString = qs.stringify(params, { skipNulls: true });
-                    navigate(`?${queryString}`);
+        if (!stateQuery) {
+            navigate('')
+            dispatch(fetchNowAired())
+        } else {
+            const params = {
+                currentPage,
+                query: stateQuery
+            };
+            const queryString = qs.stringify(params, {skipNulls: true});
+            navigate(`?${queryString}`);
 
 
-                dispatch(fetchSearched({query: stateQuery, page: currentPage}))
-            }
+            dispatch(fetchSearched({query: stateQuery, page: currentPage}))
+        }
     }, [currentPage, stateQuery])
 
     useEffect(() => {
         if (window.location.search) {
-            const params = qs.parse(window.location.search.substring(1)) as unknown as {currentPage: number, query: string};
+            const params = qs.parse(window.location.search.substring(1)) as unknown as { currentPage: number, query: string };
             setInputQuery(params.query)
             dispatch(setStateQuery(params.query));
             dispatch(setCurrentPage(Number(params.currentPage)),);
@@ -67,28 +68,28 @@ const Search:React.FC = () => {
     }, []);
 
     return (
-        <div className="movie-page">
-            <div className="container movie-page__container">
-                <div className="subheader">
-                    <h1 className="heading">Search</h1>
-                    <div className="header-input">
-                        <input value={inputQuery} onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
-                            setInputQuery(e.target.value)
-                            onInputChange(e.target.value)
-                        }} type="text"/>
-                        <span className="count-pill">
-                            {stateQuery ? `${totalResults} ${totalResults === 1 ? "Movie" : "Movies"}` : "Search"}
-                        </span>
-                    </div>
+        <>
+            <div className={styles.subheader}>
+                <h1 className={styles.heading}>Search</h1>
+                <div className={styles.search}>
+                    <input value={inputQuery} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        setInputQuery(e.target.value)
+                        onInputChange(e.target.value)
+                    }} type="text"/>
+                    <span className={styles.pill}>
+                        {stateQuery ? `${totalResults} ${totalResults === 1 ? "Movie" : "Movies"}` : "Search"}
+                    </span>
                 </div>
-                <div className="movie-page__description">
-                    {!stateQuery ? "Now Watching In Cinemas" : `Results of searching`}
-                </div>
-                {movies.length === 0 && !isLoading ? <div className="error-plug plug">It seems you entered an invalid value!</div> : <MoviesTable isLoading={isLoading} movies={movies}/>}
-                {stateQuery && <Pagination page={currentPage} total_pages={totalPages}
-                             onClickHandler={(num: number) => dispatch(setCurrentPage(num))}/>}
             </div>
-        </div>
+            <div className={styles.title}>
+                {!stateQuery ? "Now Watching In Cinemas" : `Results of searching`}
+            </div>
+            {movies.length === 0 && !isLoading ?
+                <div className={styles.plug}>It seems you entered an invalid value!</div> :
+                <MoviesTable isLoading={isLoading} movies={movies}/>}
+            {stateQuery && <Pagination page={currentPage} total_pages={totalPages}
+                                       onClickHandler={(num: number) => dispatch(setCurrentPage(num))}/>}
+        </>
     );
 }
 

@@ -1,0 +1,126 @@
+@import "../../styles/variables";
+
+.header{
+  height: 80px;
+  background-color: #101010;
+  position: relative;
+  z-index: 7;
+}
+
+.container{
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.logo{
+  font-size: 44px;
+  color: aliceblue;
+  span{
+    color: $secondary;
+  }
+}
+
+.list{
+  display: flex;
+
+}
+
+.active{
+  color: $secondary;
+}
+
+.item{
+  margin-left: 30px;
+  transition: all $transitionTime ease;
+  &:hover{
+    color: $secondary;
+  }
+}
+
+.burger{
+  position: relative;
+  width: 30px;
+  height: 30px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:after, &:before, & span{
+    content: '';
+    position: absolute;
+    background-color: $white;
+    width: 30px;
+    height: 2px;
+  }
+  &:before{
+    top: 0;
+  }
+
+  &:after{
+    bottom: 0;
+  }
+
+  & span{
+    top: 14px;
+  }
+}
+
+.menu{
+  z-index: 4;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: $headerHeight;
+  left: 0;
+  background-color: $primary;
+  transform: translateX(-110%);
+  transition: $transitionTime;
+  &.visible{
+    transform: translateX(0);
+  }
+  .container{
+    align-items: flex-start;
+  }
+  .item{
+    margin: 15px 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .header__nav-item{
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .burger{
+    display: flex;
+  }
+  .list{
+    display: none;
+  }
+  .logo{
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 410px) {
+
+  .menu{
+    top: 65px;
+  }
+
+  .header{
+    height: 65px;
+  }
+
+  .logo{
+    font-size: 1rem;
+  }
+
+}

@@ -6,16 +6,17 @@ import {
     popularSelector,
     setCurrentPage,
     totalPagesSelector
-} from "../../redux/Slices/popularSlice";
-import {useAppDispatch} from "../../redux/store";
+} from "../../../redux/Slices/popularSlice";
+import {useAppDispatch} from "../../../redux/store";
 import {useSelector} from "react-redux";
-import Pagination from "../Pagination/Pagination";
+import Pagination from "../../Pagination/Pagination";
 import 'react-loading-skeleton/dist/skeleton.css'
-import MoviesTable from "../MoviesTable/MoviesTable";
+import MoviesTable from "../../MoviesTable/MoviesTable";
 import qs from "qs";
 import {useNavigate} from "react-router-dom";
+import styles from '../CategoryPages.module.scss'
 
-const PopularPage:React.FC = () => {
+const PopularPage: React.FC = () => {
 
     const navigate = useNavigate();
     const isMounted = React.useRef(false);
@@ -30,7 +31,7 @@ const PopularPage:React.FC = () => {
             const params = {
                 currentPage,
             };
-            const queryString = qs.stringify(params, { skipNulls: true });
+            const queryString = qs.stringify(params, {skipNulls: true});
             navigate(`?${queryString}`);
         }
         dispatch(fetchPopular(currentPage))
@@ -48,15 +49,14 @@ const PopularPage:React.FC = () => {
     }, []);
 
     return (
-        <div className="movie-page popular-page">
-            <div className="container movie-page__container">
-                <div className="subheader">
-                    <h1 className="heading">Popular movies</h1>
-                </div>
-                <MoviesTable isLoading={isLoading} movies={movies}/>
-                <Pagination page={currentPage} total_pages={totalPages} onClickHandler={(num:number) => dispatch(setCurrentPage(num))}/>
+        <>
+            <div className={styles.subheader}>
+                <h1 className={styles.heading}>Popular movies</h1>
             </div>
-        </div>
+            <MoviesTable isLoading={isLoading} movies={movies}/>
+            <Pagination page={currentPage} total_pages={totalPages}
+                        onClickHandler={(num: number) => dispatch(setCurrentPage(num))}/>
+        </>
     );
 }
 

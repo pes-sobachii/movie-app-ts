@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import styles from './Header.module.scss'
 
 const BurgerMenu:React.FC<{active: boolean, setActive: (value: boolean) => void }> = ({active, setActive}) => {
 
@@ -13,11 +14,11 @@ const BurgerMenu:React.FC<{active: boolean, setActive: (value: boolean) => void 
     ]
 
     return (
-        <div className={"burger-menu" + (active ? " active" : "")}>
-            <div className="container">
-                <ul className="burger-menu__list">
+        <div className={styles.menu + (active ? ' ' + styles.visible : "")}>
+            <div className={styles.container}>
+                <ul>
                     {links.map((item) => {
-                        return <li key={item.title} className="burger-menu__item"><Link onClick={onClickHandler} to={item.path}>{item.title}</Link></li>
+                        return <li key={item.title} className={styles.item}><Link onClick={onClickHandler} to={item.path}>{item.title}</Link></li>
                     })}
                 </ul>
             </div>

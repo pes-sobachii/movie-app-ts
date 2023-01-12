@@ -1,0 +1,31 @@
+@import "../../styles/variables";
+
+.subheader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.heading {
+  padding: 20px 0;
+  text-align: left;
+  color: $white;
+  font-size: 40px;
+}
+
+@media (max-width: 760px) {
+
+  .subheader {
+    flex-direction: column;
+  }
+
+}
+
+@media (max-width: 410px) {
+
+  .heading {
+    font-size: 1.4rem;
+  }
+
+}

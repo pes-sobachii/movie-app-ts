@@ -1,0 +1,103 @@
+@import "../../styles/variables";
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 30px;
+  align-items: center;
+  justify-items: center;
+}
+
+.card {
+  overflow: hidden;
+  position: relative;
+  border: 3px solid transparent;
+  display: block;
+  transition: all $transitionTime ease;
+  border-radius: 15px;
+  max-height: 300px;
+  max-width: 200px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .overlay {
+    text-align: center;
+    padding: 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all $transitionTime ease;
+    z-index: 1;
+    transform: translateY(100%);
+
+    p {
+      font-size: 14px;
+    }
+
+    h3 {
+      font-weight: 700;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .rateCircle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: $primary;
+    color: $white;
+    border-radius: 50%;
+    border-width: 2px;
+    border-style: solid;
+    font-size: 23px;
+    opacity: 1;
+    transition: all $transitionTime ease;
+  }
+  .good{
+    border-color: #558c00;
+  }
+  .normal{
+    border-color: yellow;
+  }
+  .bad{
+    border-color: red
+  }
+  &:hover {
+    border: 3px solid $secondary;
+    .overlay {
+      background-color: rgba(96, 4, 4, 0.5);
+      transform: translateY(0);
+    }
+    .rateCircle{
+      opacity: 0;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 410px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

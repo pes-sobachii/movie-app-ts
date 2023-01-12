@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import axios from "axios";
 import {RootState} from "../store";
-import {initialStateType, WholeFetchedData} from "../../Components/Types/Types";
+import {initialStateType, WholeFetchedData} from "../../Types/Types";
 
 export const fetchUpcoming = createAsyncThunk<WholeFetchedData, number>(
     'upcoming/fetchUpcomingSliceStatus',
