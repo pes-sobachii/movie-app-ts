@@ -1,28 +1,21 @@
 import React, {useEffect} from 'react';
-import {useAppDispatch} from "../../../redux/store";
-import {useSelector} from "react-redux";
-import Pagination from "../../Pagination/Pagination";
-import {
-    currentUpcomingPageSelector,
-    fetchUpcoming,
-    isLoadingUpcomingPageSelector,
-    setCurrentPage,
-    totalUpcomingSlicePagesSelector,
-    upcomingSelector
-} from "../../../redux/Slices/upcomingSlice";
-import MoviesTable from "../../MoviesTable/MoviesTable";
-import qs from 'qs';
+import qs from "qs";
 import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
+
 import styles from '../CategoryPages.module.scss'
+
+import {useAppDispatch} from "../../../redux/store";
+import Pagination from "../../Pagination/Pagination";
+import {fetchUpcoming, setCurrentPage, upcomingSelector} from "../../../redux/Slices/upcomingSlice";
+import MoviesTable from "../../MoviesTable/MoviesTable";
+
 
 const UpcomingPage: React.FC = () => {
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch()
-    const movies = useSelector(upcomingSelector)
-    const totalPages = useSelector(totalUpcomingSlicePagesSelector)
-    const currentPage = useSelector(currentUpcomingPageSelector)
-    const isLoading = useSelector(isLoadingUpcomingPageSelector)
+    const { items, isLoading, currentPage, totalPages} = useSelector(upcomingSelector)
     const isMounted = React.useRef(false);
 
     useEffect(() => {
@@ -52,7 +45,7 @@ const UpcomingPage: React.FC = () => {
             <div className={styles.subheader}>
                 <h1 className={styles.heading}>Upcoming movies</h1>
             </div>
-            <MoviesTable isLoading={isLoading} movies={movies}/>
+            <MoviesTable isLoading={isLoading} movies={items}/>
             <Pagination page={currentPage} total_pages={totalPages}
                         onClickHandler={(num: number) => dispatch(setCurrentPage(num))}/>
         </>

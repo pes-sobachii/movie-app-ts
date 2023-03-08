@@ -1,16 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from "axios";
+
 import {RootState} from "../store";
 import {FetchedItemType, WholeFetchedData} from "../../Types/Types";
 
 interface SearchSliceState {
-    items: FetchedItemType[];
+    movies: FetchedItemType[];
     totalPages: number;
     currentPage: number;
     isLoading: boolean;
     totalResults: number;
-    query: string;
+    stateQuery: string;
 }
 
 export const fetchSearched = createAsyncThunk<WholeFetchedData, {query: string, page: number}>(
@@ -31,12 +32,12 @@ export const fetchNowAired = createAsyncThunk<WholeFetchedData>(
 
 
 const initialState: SearchSliceState = {
-    items: [],
+    movies: [],
     totalPages: 1,
     currentPage: 1,
     isLoading: false,
     totalResults: 0,
-    query: ''
+    stateQuery: ''
 };
 
 const popularSlice = createSlice({
@@ -44,38 +45,38 @@ const popularSlice = createSlice({
     initialState,
     reducers: {
         removeItems(state) {
-            state.items = [];
-            state.query = '';
+            state.movies = [];
+            state.stateQuery = '';
         },
         setCurrentPage(state, action: PayloadAction<number>) {
             state.currentPage = action.payload;
         },
         setStateQuery(state, action: PayloadAction<string>) {
-            state.query = action.payload;
+            state.stateQuery = action.payload;
         },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchSearched.pending, (state) => {
-            state.items = [];
+            state.movies = [];
             state.isLoading = true;
         });
 
         builder.addCase(fetchSearched.fulfilled, (state, action) => {
-            state.items = action.payload.results;
+            state.movies = action.payload.results;
             state.totalPages = action.payload.total_pages;
             state.totalResults = action.payload.total_results
             state.isLoading = false;
         });
 
         builder.addCase(fetchSearched.rejected, (state) => {
-            state.items = [];
+            state.movies = [];
             state.totalPages = 0
             state.totalResults = 0
             state.isLoading = false;
         });
 
         builder.addCase(fetchNowAired.pending, (state) => {
-            state.items = [];
+            state.movies = [];
             state.totalPages = 0
             state.currentPage = 1
             state.totalResults = 0
@@ -83,23 +84,18 @@ const popularSlice = createSlice({
         });
 
         builder.addCase(fetchNowAired.fulfilled, (state, action) => {
-            state.items = action.payload.results;
+            state.movies = action.payload.results;
             state.isLoading = false;
         });
 
         builder.addCase(fetchNowAired.rejected, (state) => {
-            state.items = [];
+            state.movies = [];
             state.isLoading = false;
         });
     },
 });
 
-export const searchedSelector = (state: RootState) => state.searchSlice.items
-export const isLoadingSelector = (state: RootState) => state.searchSlice.isLoading
-export const totalSearchPagesSelector = (state: RootState) => state.searchSlice.totalPages
-export const currentSearchPageSelector = (state: RootState) => state.searchSlice.currentPage
-export const totalSearchResultsSelector = (state: RootState) => state.searchSlice.totalResults
-export const querySelector = (state: RootState) => state.searchSlice.query
+export const searchedSelector = (state: RootState) => state.searchSlice
 
 export const { setStateQuery, setCurrentPage, removeItems } = popularSlice.actions;
 

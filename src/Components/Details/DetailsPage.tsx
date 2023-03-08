@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react';
-import {detailsSelector, fetchDetails} from "../../redux/Slices/detailsSlice";
 import {useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
-import {useAppDispatch} from "../../redux/store";
 import Skeleton from "react-loading-skeleton";
+
 import styles from './DetailsPage.module.scss'
+
+import {detailsSelector, fetchDetails} from "../../redux/Slices/detailsSlice";
+import {useAppDispatch} from "../../redux/store";
 
 const DetailsPage:React.FC = () => {
 

@@ -1,36 +1,30 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useAppDispatch} from "../../redux/store";
 import {useSelector} from "react-redux";
+import qs from "qs";
+import {useNavigate} from "react-router-dom";
+import debounce from 'lodash.debounce'
+
+
+import styles from './Search.module.scss'
+
 import {
-    currentSearchPageSelector,
     fetchNowAired,
     fetchSearched,
-    isLoadingSelector,
-    querySelector,
     removeItems,
     searchedSelector,
     setCurrentPage,
-    setStateQuery,
-    totalSearchPagesSelector,
-    totalSearchResultsSelector
+    setStateQuery
 } from "../../redux/Slices/searchSlice";
-import debounce from 'lodash.debounce'
 import Pagination from "../Pagination/Pagination";
 import MoviesTable from "../MoviesTable/MoviesTable";
-import qs from "qs";
-import {useNavigate} from "react-router-dom";
-import styles from './Search.module.scss'
+import {useAppDispatch} from "../../redux/store";
+
 
 const Search: React.FC = () => {
 
     const [inputQuery, setInputQuery] = useState('')
     const dispatch = useAppDispatch()
-    const totalPages = useSelector(totalSearchPagesSelector)
-    const currentPage = useSelector(currentSearchPageSelector)
-    const isLoading = useSelector(isLoadingSelector)
-    const movies = useSelector(searchedSelector)
-    const totalResults = useSelector(totalSearchResultsSelector)
-    const stateQuery = useSelector(querySelector)
+    const { movies, isLoading, currentPage, totalPages, stateQuery, totalResults} = useSelector(searchedSelector)
     const navigate = useNavigate();
 
     const onInputChange = useCallback(debounce((str) => {

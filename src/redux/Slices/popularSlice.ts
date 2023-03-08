@@ -1,8 +1,8 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import axios from "axios";
+
 import {RootState} from "../store";
 import {initialStateType, WholeFetchedData} from "../../Types/Types";
-
 
 export const fetchPopular = createAsyncThunk<WholeFetchedData, number>(
     'popular/fetchPopularStatus',
@@ -47,10 +47,7 @@ const popularSlice = createSlice({
     },
 });
 
-export const popularSelector = (state: RootState) => state.popularSlice.items
-export const totalPagesSelector = (state: RootState) => state.popularSlice.totalPages
-export const currentPageSelector = (state: RootState) => state.popularSlice.currentPage
-export const isLoadingPopularSelector = (state: RootState) => state.popularSlice.isLoading
+export const popularSelector = (state: RootState) => state.popularSlice
 
 
 export const { setCurrentPage } = popularSlice.actions;

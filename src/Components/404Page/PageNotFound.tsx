@@ -1,6 +1,4 @@
 import React from 'react';
-
-import styles from './PageNotFound.module.scss'
 import errorPNG from '../../Assets/favpng_symbol-download.png'
 
 const PageNotFound:React.FC = () => {
