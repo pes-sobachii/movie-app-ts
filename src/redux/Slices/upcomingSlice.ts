@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import axios from "axios";
-
 import {RootState} from "../store";
 import {initialStateType, WholeFetchedData} from "../../Types/Types";
 
@@ -47,7 +46,10 @@ const upcomingSlice = createSlice({
     },
 });
 
-export const upcomingSelector = (state: RootState) => state.upcomingSlice
+export const upcomingSelector = (state: RootState) => state.upcomingSlice.items
+export const totalUpcomingSlicePagesSelector = (state: RootState) => state.upcomingSlice.totalPages
+export const currentUpcomingPageSelector = (state: RootState) => state.upcomingSlice.currentPage
+export const isLoadingUpcomingPageSelector = (state: RootState) => state.upcomingSlice.isLoading
 
 export const { setCurrentPage } = upcomingSlice.actions;
 

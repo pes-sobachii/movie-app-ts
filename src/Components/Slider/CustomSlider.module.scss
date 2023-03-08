@@ -9,12 +9,12 @@
 
 .slider {
   max-height: 370px;
-  max-width: 820px;
+  max-width: 780px;
 }
 
-
-.card{
-  max-width: 220px;
+.card, .skeleton-slider__item {
+  width: 220px;
+  margin: 0 18px;
 }
 
 .card {
@@ -32,6 +32,10 @@
   }
 }
 
+.skeleton {
+  display: flex;
+}
+
 .item {
   height: 325px;
   border-radius: 20px;
@@ -41,8 +45,14 @@
   .slider {
     max-width: 550px;
   }
-  .card {
-    max-width: 225px;
+  .card, .item {
+    width: 225px;
+    margin: 0 20px;
+  }
+  .skeleton {
+    div:last-child {
+      display: none;
+    }
   }
 }
 
@@ -52,10 +62,14 @@
     max-width: 480px;
   }
 
-  .card {
-    max-width: 200px;
+  .card, .item {
+    width: 200px;
+    margin: 0 16px;
   }
 
+  .item {
+    height: 300px;
+  }
 }
 
 @media (max-width: 630px) {
@@ -64,8 +78,13 @@
     max-width: 418px;
   }
 
-  .card{
-    max-width: 180px;
+  .card, .item {
+    width: 180px;
+    margin: 0 12px;
+  }
+
+  .item {
+    height: 270px;
   }
 
 }
@@ -79,18 +98,38 @@
     overflow: hidden;
   }
 
-  .card {
-    max-width: 200px;
+  .card, .item {
+    width: 200px;
+    margin: 0 25px;
   }
 
+  .item {
+    height: 300px;
+  }
+
+  .skeleton {
+    div:last-child {
+      display: none;
+    }
+
+    div:first-child {
+      display: none;
+    }
+  }
 }
 
 @media (max-width: 410px) {
+
   .slider {
     max-width: 180px;
   }
 
-  .card {
-    max-width: 170px;
+  .card, .item {
+    width: 170px;
+    margin: 0 5px;
+  }
+
+  .item {
+    height: 255px;
   }
 }

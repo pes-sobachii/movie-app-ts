@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-
 import popularSlice from "./Slices/popularSlice";
 import searchSlice from "./Slices/searchSlice";
 import upcomingSlice from "./Slices/upcomingSlice";

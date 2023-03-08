@@ -1,13 +1,12 @@
 import React, {useRef} from 'react';
-import {MdOutlineNavigateBefore, MdOutlineNavigateNext} from "react-icons/md";
-import {Link} from "react-router-dom";
-import Slider from "react-slick";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styles from './WideSlider.module.scss'
-
+import Slider from "react-slick";
 import {FetchedItemType} from "../../Types/Types";
+import {MdOutlineNavigateBefore, MdOutlineNavigateNext} from "react-icons/md";
+import {Link} from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
+import styles from './WideSlider.module.scss'
 
 const WideSlider:React.FC<{ movies: FetchedItemType[], isLoading: boolean }> = ({movies, isLoading}) => {
 

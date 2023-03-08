@@ -1,7 +1,6 @@
 import React from 'react';
-import {Link} from "react-router-dom";
-
 import {FetchedItemType} from "../../Types/Types";
+import {Link} from "react-router-dom";
 import styles from './CustomSlider.module.scss'
 
 

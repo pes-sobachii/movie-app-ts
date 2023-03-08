@@ -1,8 +1,7 @@
 import React, {Suspense} from 'react';
 import {Route, Routes} from 'react-router-dom';
-
+import './App.css';
 import './styles/style.scss';
-
 import Header from "./Components/Header/Header";
 import MainPage from "./Components/Main/MainPage";
 
